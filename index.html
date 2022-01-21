@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,9 +8,10 @@
   <link rel="stylesheet" href="css/style.css">
   <title>URNA</title>
 </head>
+
 <body>
   <div class="template" id="screen_init">
-    <div class="template-screen-init"> 
+    <div class="template-screen-init">
       <div class="image-voto">
         <img src="imagens/urna-de-voto-isolada-com-papel-do-voto-77838111.jpg" alt="">
       </div>
@@ -19,15 +21,53 @@
       </div>
       <div class="bouttons">
         <button class="btn primary"> Adicionar candidato</button>
-        <button class="btn segundary"> Inicar o voto</button>
+        <button class="btn segundary" id="btn_init_voto"> Inicar o voto</button>
       </div>
     </div>
   </div>
-  <div class="template" id="screen_voto"></div>
-  <div class="app"></div>
+  <div class="template" id="screen_voto">
+    <div class="template-screen-voto">
+      <div class="lista-candidatos"></div>
+      <div class="display-voto">
+        <div class="visor">
+          <div class="digito"></div>
+          <div class="digito"></div>
+          <div class="digito"></div>
+          <div class="digito"></div>
+          <div class="digito"></div>
+        </div>
+        <div class="teclado">
+          <div class="cel">1</div>
+          <div class="cel">2</div>
+          <div class="cel">3</div>
+          <div class="cel">4</div>
+          <div class="cel">5</div>
+          <div class="cel">6</div>
+          <div class="cel">7</div>
+          <div class="cel">8</div>
+          <div class="cel">9</div>
+          <div class="cel">*</div>
+          <div class="cel">0</div>
+          <div class="cel">C</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="app"></div>
 
-  <script >
-    console.log(document.getElementById('screen_init').firstElementChild.outerHTML )
+  <script>
+    const App = document.getElementById('app')
+    const templateInit = document.getElementById('screen_init').firstElementChild.outerHTML
+    const templateVoto = document.getElementById('screen_voto').firstElementChild.outerHTML
+    const BtnInitVoto = document.getElementById('btn_init_voto')
+
+    window.addEventListener('load', () => App.innerHTML = templateInit)
+    console.log(BtnInitVoto)
+    BtnInitVoto.addEventListener('click', (e) => {
+      App.innerHTML = templateVoto
+      console.log(e.target)
+    })
   </script>
 </body>
+
 </html>
