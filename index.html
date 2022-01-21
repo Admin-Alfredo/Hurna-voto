@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <title>URNA</title>
+</head>
+<body>
+  <div class="template" id="screen_init">
+    <div class="template-screen-init"> 
+      <div class="image-voto">
+        <img src="imagens/urna-de-voto-isolada-com-papel-do-voto-77838111.jpg" alt="">
+      </div>
+      <div class="titles">
+        <h1>Bem Vindo</h1>
+        <h2>Sistema de voto do Instic - SIMVOTIC</h2>
+      </div>
+      <div class="bouttons">
+        <button class="btn primary"> Adicionar candidato</button>
+        <button class="btn segundary"> Inicar o voto</button>
+      </div>
+    </div>
+  </div>
+  <div class="template" id="screen_voto"></div>
+  <div class="app"></div>
+
+  <script >
+    console.log(document.getElementById('screen_init').firstElementChild.outerHTML )
+  </script>
+</body>
+</html>
