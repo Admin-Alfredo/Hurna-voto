@@ -1,0 +1,31 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagina de Pesquisa</title>
+</head>
+<body>
+  
+  <div>
+    
+    PESQUISAR: <span class="r_q"></span>
+  </div>
+  <script>
+    const match = /q=(.{1,})&{0,}/g.exec(location.search)
+    // console.log(match[1])
+    const rq = document.querySelector('.r_q')
+    if(match[1]){
+      rq.innerHTML = decodeURI(match[1])
+    }else{
+      rq.innerHTML = "sem resultdado!"
+    }
+  </script>
+</body>
+</html>
+
+
+

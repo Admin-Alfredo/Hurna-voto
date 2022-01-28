@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
   <meta charset="UTF-8">
@@ -10,62 +10,145 @@
 </head>
 
 <body>
-  <div class="template" id="screen_init">
-    <div class="template-screen-init">
-      <div class="image-voto">
-        <img src="imagens/urna-de-voto-isolada-com-papel-do-voto-77838111.jpg" alt="">
-      </div>
-      <div class="titles">
-        <h1>Bem Vindo</h1>
-        <h2>Sistema de voto do Instic - SIMVOTIC</h2>
-      </div>
-      <div class="bouttons">
-        <button class="btn primary"> Adicionar candidato</button>
-        <button class="btn segundary" id="btn_init_voto"> Inicar o voto</button>
-      </div>
-    </div>
-  </div>
-  <div class="template" id="screen_voto">
-    <div class="template-screen-voto">
-      <div class="lista-candidatos"></div>
-      <div class="display-voto">
-        <div class="visor">
-          <div class="digito"></div>
-          <div class="digito"></div>
-          <div class="digito"></div>
-          <div class="digito"></div>
-          <div class="digito"></div>
+  <div id="app">
+    <div class="template active" id="screen_init">
+      <div class="template-screen-init">
+        <a href="pesquisa.html?q=<img src='' onerror=alert();%20console.log(23)>">VER RESULTADO</a>
+        <div class="image-voto">
+          <img src="imagens/urna-de-voto-isolada-com-papel-do-voto-77838111.jpg" alt="">
         </div>
-        <div class="teclado">
-          <div class="cel">1</div>
-          <div class="cel">2</div>
-          <div class="cel">3</div>
-          <div class="cel">4</div>
-          <div class="cel">5</div>
-          <div class="cel">6</div>
-          <div class="cel">7</div>
-          <div class="cel">8</div>
-          <div class="cel">9</div>
-          <div class="cel">*</div>
-          <div class="cel">0</div>
-          <div class="cel">C</div>
+        <div class="titles">
+          <h1>Bem Vindo</h1>
+          <h2>Sistema de voto do Instic - SIMVOTIC</h2>
+        </div>
+        <div class="buttons">
+          <button class="btn primary"> Adicionar candidato</button>
+          <button class="btn segundary btn_init_voto"> Inicar o voto</button>
         </div>
       </div>
     </div>
+    <div class="template" id="screen_voto">
+      <div class="template-screen-voto">
+        <div class="lista-candidatos"></div>
+        <div class="display-voto">
+          <div class="visor">
+            <div class="digito blink"></div>
+            <div class="digito"></div>
+            <div class="digito"></div>
+            <div class="digito"></div>
+            <div class="digito"></div>
+          </div>
+          <div class="teclado">
+            <div class="cel">1</div>
+            <div class="cel">2</div>
+            <div class="cel">3</div>
+            <div class="cel">4</div>
+            <div class="cel">5</div>
+            <div class="cel">6</div>
+            <div class="cel">7</div>
+            <div class="cel">8</div>
+            <div class="cel">9</div>
+            <div class="cel">CA</div>
+            <div class="cel">0</div>
+            <div class="cel">C</div>
+          </div>
+          <div class="controlos-voto">
+            <div class="buttons">
+              <button class="btn primary normal btn_cancelar_voto">CANCELAR</button>
+              <button class="btn  normal btn_voto" disabled onclick="alert()">VOTAR</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div id="app"></div>
+
+
+
+  <!-- <script src="scripts/render.js"></script> -->
+  <!-- <script src="scripts/load.js"></script> -->
 
   <script>
-    const App = document.getElementById('app')
-    const templateInit = document.getElementById('screen_init').firstElementChild.outerHTML
-    const templateVoto = document.getElementById('screen_voto').firstElementChild.outerHTML
-    const BtnInitVoto = document.getElementById('btn_init_voto')
+    
+    // render('screen_init')
+      const BtnInitVoto = document.querySelector('.btn_init_voto')
+      const screen_init = document.querySelector('#screen_init')
+      const screen_voto = document.querySelector('#screen_voto')
 
-    window.addEventListener('load', () => App.innerHTML = templateInit)
-    console.log(BtnInitVoto)
-    BtnInitVoto.addEventListener('click', (e) => {
-      App.innerHTML = templateVoto
-      console.log(e.target)
+      const Templates = document.querySelectorAll('.template')
+      // console.log(BtnInitVoto)
+      BtnInitVoto.addEventListener('click', function(){
+        screen_init.classList.remove('active')
+        screen_voto.classList.add('active')
+      })
+    // const BtnCancelarVoto = document.querySelector('.btn_cancelar_voto')
+    const BtnVotar = document.querySelector('.btn_voto')
+    // BtnInitVoto.addEventListener('click', () => render('screen_voto'))
+    // BtnCancelarVoto.addEventListener('click', () => render('screen_init'))
+
+    const Teclado = document.querySelectorAll('.teclado > .cel')
+    const Visor = document.querySelector('.visor')
+    let TotalDigitos = []
+
+    Teclado.forEach(function (tecla) {
+
+      tecla.addEventListener('click', (e) => {
+        console.log(TotalDigitos)
+
+        // ESTRATEGIA DE CLICK
+        const caracter = e.currentTarget.innerText
+
+        const AtualDigito = document.querySelector('.digito.blink')
+
+        if (caracter == "C") {
+          const PreviewsDigito = AtualDigito.previousElementSibling
+
+          if (AtualDigito && !AtualDigito.nextElementSibling && AtualDigito.innerText !== "") {
+            AtualDigito.innerText = ""
+            BtnVotar.setAttribute('disabled', "true")
+            BtnVotar.classList.remove('segundary')
+            return;
+          }
+
+          if (PreviewsDigito) {
+            AtualDigito.classList.remove('blink')
+            PreviewsDigito.classList.add('blink')
+            PreviewsDigito.innerText = ""
+            BtnVotar.setAttribute('disabled', "true")
+            BtnVotar.classList.remove('segundary')
+          }
+          TotalDigitos.pop()
+          return;
+        }
+        if (caracter == "CA") {
+          const TodosDiditos = document.querySelectorAll('.digito')
+          AtualDigito.classList.remove('blink')
+          Visor.firstElementChild.classList.add('blink')
+          TodosDiditos.forEach(_digito => _digito.innerText = "")
+          TotalDigitos.length = 0
+          BtnVotar.setAttribute('disabled', "true")
+          BtnVotar.classList.remove('segundary')
+          return;
+        }
+        if (AtualDigito && !AtualDigito.nextElementSibling) {
+          // SE FALTAR MAIS UM DIGITO, MAS NAO TIVER UM PROXIMO.
+          AtualDigito.innerText = caracter
+          BtnVotar.removeAttribute("disabled")
+          BtnVotar.classList.add('segundary')
+          return;
+        }
+
+        if (AtualDigito && AtualDigito.nextElementSibling) {
+          // SE FALTAR MAIS UM DIGITO, E TIVER UM PROXIMO.
+          AtualDigito.innerText = caracter
+          TotalDigitos.push(AtualDigito.innerText)
+
+          AtualDigito.classList.remove('blink')
+          const NextDigito = AtualDigito.nextElementSibling
+          NextDigito.classList.add('blink')
+          return;
+        }
+      })
     })
   </script>
 </body>

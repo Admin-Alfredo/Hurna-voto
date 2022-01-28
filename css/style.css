@@ -8,13 +8,21 @@ htm, body{
   height: 100vh;
   width: 100vw;
 }
-
-.template{
-  display: none;
-}
 #app{
   height: 100%;
   width: 100%;
+  position: relative;
+}
+.template{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: 100%;
+  transition: .3s .1s;
+}
+.template.active{
+  bottom:0%;
+  transition: .3s .3s;
 }
 .image-voto{
   width: 300px;
@@ -57,6 +65,9 @@ htm, body{
   font-size: 1.5rem;
   cursor: pointer;
   transition: .3s;
+  touch-action: inherit;
+  color: #999;
+  /* touch-action: none; */
 }
 .btn.primary{
   color: #fff;
@@ -71,4 +82,84 @@ htm, body{
 }
 .btn.btn.segundary:hover{
   background-color: rgb(207, 3, 37);
+}
+.buttons{
+  display: flex;
+  margin: 10px 0;
+}
+.buttons > .btn.normal:first-child{
+  margin-left:  0;
+}
+.btn.normal{
+  margin: 0 .4rem;
+  padding: .5rem;
+}
+.template-screen-voto{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;  
+  margin-top: 100px;
+}
+.display-voto{
+  width: 490px;
+  height: 500px;
+  background-color: #ccc;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.visor{
+  align-self: center;
+  width: 450px;
+  height: 70px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 1fr;
+  grid-gap: 10px;
+  margin: 35px 0;
+}
+.visor > .digito{
+  height: 60px; 
+  background: ;
+  border-bottom: 3px solid red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+.teclado{
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-gap: 10px;
+}
+.teclado > .cel{
+  /* width: 40px;*/
+  height: 60px; 
+  text-align: center;
+  background-color: #bbb;
+
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+@keyframes Blink {
+  0%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+.blink{
+  animation-name: Blink;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
 }
