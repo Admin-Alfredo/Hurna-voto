@@ -10,19 +10,41 @@
 </head>
 <body>
   
-  <div>
-    
-    PESQUISAR: <span class="r_q"></span>
+  <div class="app">
+
+	<div class="a_img">
+		<img src="#"/>
+	</div>
+	<label class="a_nome"></label>
+	<label class="a_nome"></label>
+  </span>
+  <p> Acessa a página inicial <a href="https://admin-alfredo.github.io/Hurna-voto/">aqui</a></p>
   </div>
   <script>
-    const match = /q=(.{1,})&{0,}/g.exec(location.search)
-    // console.log(match[1])
-    const rq = document.querySelector('.r_q')
-    if(match[1]){
-      rq.innerHTML = decodeURI(match[1])
-    }else{
-      rq.innerHTML = "sem resultdado!"
-    }
+	const app = document.querySelector('.app')
+	app.style.display = 'none'
+	function renderizar(data){
+	
+		app.querySelector('.a_nome').innerHTML = data.login
+		app.querySelector('.a_img > img').src = data.avatar_url
+		app.querySelector('.a_img > img').width = 50
+		app.querySelector('.a_img > img').style.borderRadius = '50%'
+		
+		app.style.display = 'initial'
+		
+	}
+	fetch('https://api.github.com/users/Admin-Alfredo', {'Content-Type': 'application/json'})
+		.then(res => {
+			if(res.status > 399){
+				return new Error('Erro na requisição')
+			}
+			return res.json()
+		}).then(data => {
+			console.log(data)
+			renderizar(data)
+		}).catch(err => {
+			console.error(err.message)
+		})
   </script>
 </body>
 </html>
