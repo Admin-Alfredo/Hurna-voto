@@ -7,17 +7,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.css">
   <title>URNA</title>
+  <script type="module" defer src="Usuario.js"> </script>
 </head>
 
 <body>
   <div id="app">
     <div class="template active" id="screen_init">
       <div class="template-screen-init">
-        <a href="pesquisa.html?q=<img src='' onerror=alert();%20console.log(23)>">VER RESULTADO</a>
+        <a id="avatar" href="pesquisa.html?q=<img src='' onerror=alert();%20console.log(23)>"></a>
         <div class="image-voto">
           <img src="imagens/urna-de-voto-isolada-com-papel-do-voto-77838111.jpg" alt="">
         </div>
         <div class="titles">
+          <new-usuario></new-usuario>
           <h1>Bem Vindo</h1>
           <h2>Sistema de voto do Instic - SIMVOTIC</h2>
         </div>
@@ -68,8 +70,22 @@
   <!-- <script src="scripts/render.js"></script> -->
   <!-- <script src="scripts/load.js"></script> -->
 
-  <script>
-    
+  <script type="module">
+    // fetch('https://api.github.com/users/admin-alfredo',{method: "GET", headers: { 'Content-type': 'application/json'}})
+    //   .then(res => res.blob())
+      
+      // .then(json => {
+      //   const img = new Image()
+      //   img.src = json.avatar_url
+      //   img.width = 50
+      //   img.height = 50
+      //   img.style.borderRadius = "50%"
+      //   const Avatar = document.getElementById('avatar')
+
+      //   Avatar.appendChild(img)
+      // })
+
+
     // render('screen_init')
       const BtnInitVoto = document.querySelector('.btn_init_voto')
       const screen_init = document.querySelector('#screen_init')
